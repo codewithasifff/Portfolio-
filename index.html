@@ -140,6 +140,9 @@ nav.built{transform:translateX(-50%)}
 .vcard.h{grid-column:auto}
 @media(max-width:1000px){.vgrid.reel{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:760px){.vgrid.reel{grid-template-columns:repeat(2,minmax(0,1fr))}.vgrid.land{grid-template-columns:1fr}}
+/* keep the 5 vertical edits centred instead of leaving a gap or orphan card */
+@media(min-width:761px) and (max-width:1000px){.vgrid.reel{grid-template-columns:repeat(6,minmax(0,1fr))}.vgrid.reel .vcard{grid-column:span 2}.vgrid.reel .vcard:nth-child(4){grid-column:2/span 2}}
+@media(max-width:760px){.vgrid.reel{grid-template-columns:repeat(4,minmax(0,1fr))}.vgrid.reel .vcard{grid-column:span 2}.vgrid.reel .vcard:nth-child(5){grid-column:2/span 2}}
 </style>
 <script>document.documentElement.classList.add('js')</script></head>
 <body>
@@ -205,14 +208,14 @@ nav.built{transform:translateX(-50%)}
  <div class="edits">
   <h3 class="edits-h">Edits <span class="hand">cuts, reels &amp; motion</span></h3>
   <div class="vgrid reel">
-   <div class="vcard v" role="img" aria-label="Video edit 01"><video muted loop playsinline preload="none" poster="edit-02.jpg" data-src="vid-02.mp4"></video><span class="tn">EDIT 01</span><span class="rec">REC</span></div>
-   <div class="vcard v" role="img" aria-label="Video edit 02"><video muted loop playsinline preload="none" poster="edit-03.jpg" data-src="vid-03.mp4"></video><span class="tn">EDIT 02</span><span class="rec">REC</span></div>
-   <div class="vcard v" role="img" aria-label="Video edit 03"><video muted loop playsinline preload="none" poster="edit-04.jpg" data-src="vid-04.mp4"></video><span class="tn">EDIT 03</span><span class="rec">REC</span></div>
-   <div class="vcard v" role="img" aria-label="Video edit 04"><video muted loop playsinline preload="none" poster="edit-05.jpg" data-src="vid-05.mp4"></video><span class="tn">EDIT 04</span><span class="rec">REC</span></div>
-   <div class="vcard v" role="img" aria-label="Video edit 05"><video muted loop playsinline preload="none" poster="edit-06.jpg" data-src="vid-06.mp4"></video><span class="tn">EDIT 05</span><span class="rec">REC</span></div>
+   <div class="vcard v" role="img" aria-label="Video edit 01"><video muted loop playsinline preload="none" poster="edit-01.jpg" data-src="vid-01.mp4"></video><span class="tn">EDIT 01</span><span class="rec">REC</span></div>
+   <div class="vcard v" role="img" aria-label="Video edit 02"><video muted loop playsinline preload="none" poster="edit-02.jpg" data-src="vid-02.mp4"></video><span class="tn">EDIT 02</span><span class="rec">REC</span></div>
+   <div class="vcard v" role="img" aria-label="Video edit 03"><video muted loop playsinline preload="none" poster="edit-03.jpg" data-src="vid-03.mp4"></video><span class="tn">EDIT 03</span><span class="rec">REC</span></div>
+   <div class="vcard v" role="img" aria-label="Video edit 04"><video muted loop playsinline preload="none" poster="edit-04.jpg" data-src="vid-04.mp4"></video><span class="tn">EDIT 04</span><span class="rec">REC</span></div>
+   <div class="vcard v" role="img" aria-label="Video edit 05"><video muted loop playsinline preload="none" poster="edit-05.jpg" data-src="vid-05.mp4"></video><span class="tn">EDIT 05</span><span class="rec">REC</span></div>
   </div>
   <div class="vgrid land">
-   <div class="vcard h" role="img" aria-label="Video edit 06"><video muted loop playsinline preload="none" poster="edit-01.jpg" data-src="vid-01.mp4"></video><span class="tn">EDIT 06</span><span class="rec">REC</span></div>
+   <div class="vcard h" role="img" aria-label="Video edit 06"><video muted loop playsinline preload="none" poster="edit-06.jpg" data-src="vid-06.mp4"></video><span class="tn">EDIT 06</span><span class="rec">REC</span></div>
    <div class="vcard h" role="img" aria-label="Video edit 07"><video muted loop playsinline preload="none" poster="edit-07.jpg" data-src="vid-07.mp4"></video><span class="tn">EDIT 07</span><span class="rec">REC</span></div>
    <div class="vcard h" role="img" aria-label="Video edit 08"><video muted loop playsinline preload="none" poster="edit-08.jpg" data-src="vid-08.mp4"></video><span class="tn">EDIT 08</span><span class="rec">REC</span></div>
   </div>
