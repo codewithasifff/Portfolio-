@@ -83,6 +83,13 @@ h2{font-size:clamp(44px,7vw,92px);color:var(--blue)}
 .links{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:36px}
 .btn{display:inline-block;background:var(--blue);color:var(--cream);padding:14px 28px;font-weight:600;text-decoration:none;border:3px solid var(--cream);transition:.2s}
 .btn:hover{background:var(--pop);transform:translateY(-4px)}
+/* social links */
+.contact .find{font-size:28px;color:var(--pop);margin-top:44px}
+.links.socials{margin-top:16px;gap:14px}
+.btn.soc{display:inline-flex;align-items:center;gap:10px;padding:11px 20px;background:var(--ink);box-shadow:5px 5px 0 var(--blue)}
+.btn.soc svg{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.btn.soc:hover{background:var(--pop);box-shadow:5px 5px 0 var(--cream)}
+@media(max-width:760px){.btn.soc{padding:10px 16px;font-size:15px;box-shadow:4px 4px 0 var(--blue)}.btn.soc svg{width:20px;height:20px}}
 
 /* floating nav */
 nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:9;background:var(--cream);border:3px solid var(--ink);border-radius:50px;padding:6px;display:flex;gap:4px;box-shadow:5px 5px 0 var(--ink)}
@@ -251,6 +258,14 @@ nav.built{transform:translateX(-50%)}
  <div class="links">
   <a class="btn" href="mailto:ashifshekh1717@gmail.com">ashifshekh1717@gmail.com</a>
   <a class="btn" href="tel:+918081060496">+91 80810 60496</a>
+ </div>
+ <p class="hand find">Find me online</p>
+ <div class="links socials">
+  <a class="btn soc" href="https://www.instagram.com/tylerdurdenmfucker/" target="_blank" rel="noopener noreferrer" aria-label="Instagram (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg>Instagram</a>
+  <a class="btn soc" href="https://www.linkedin.com/in/mr-aashif-002a4b2a4" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+  <a class="btn soc" href="https://github.com/codewithasifff" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
+  <a class="btn soc" href="https://youtube.com/@medwithasif" target="_blank" rel="noopener noreferrer" aria-label="YouTube (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>YouTube</a>
+  <a class="btn soc" href="https://profile.indeed.com/?hl=en_IN&amp;co=IN&amp;from=gnav-menu-homepage" target="_blank" rel="noopener noreferrer" aria-label="Indeed (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Indeed</a>
  </div>
  <p class="hand" style="font-size:28px;margin-top:30px">Lucknow, Uttar Pradesh</p>
 </div></section>
