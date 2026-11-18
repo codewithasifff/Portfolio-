@@ -334,6 +334,27 @@ footer{background:#171512;color:#bbb}
 }
 @media(prefers-reduced-motion:reduce){.hero .photo{animation:none;transform:none}}
 
+
+/* Loose, visibly slack lanyard — not a straight vertical string */
+.hero .photo{transform-origin:50% 0%;isolation:isolate}
+.hero .photo:before{
+ content:"";position:absolute;z-index:-1;
+ width:clamp(105px,15vw,150px);height:clamp(330px,44vh,440px);
+ left:50%;bottom:calc(100% - 7px);
+ background-color:transparent;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='440' viewBox='0 0 150 440'%3E%3Cpath d='M75 0 C75 64 20 92 27 157 C33 220 126 246 113 312 C106 355 75 380 75 440' fill='none' stroke='%23171512' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M78 0 C78 64 23 92 30 157 C36 220 129 246 116 312 C109 355 78 380 78 440' fill='none' stroke='%23ffffff' stroke-opacity='.55' stroke-width='.8' stroke-linecap='round'/%3E%3C/svg%3E");
+ background-repeat:no-repeat;background-position:center bottom;background-size:100% 100%;
+ transform:translateX(-50%);box-shadow:none;
+}
+.hero .photo:after{
+ top:-8px;left:50%;width:15px;height:15px;
+ border:2px solid var(--ink);background:var(--yellow);
+ box-shadow:0 2px 2px rgba(0,0,0,.15);
+}
+@media(max-width:760px){
+ .hero .photo:before{width:112px;height:clamp(300px,40vh,380px)}
+}
+
 </style>
 <script>document.documentElement.classList.add('js')</script></head>
 <body>
