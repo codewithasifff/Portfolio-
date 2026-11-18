@@ -6,7 +6,7 @@ Personal portfolio website of **Shekh Asif**, B.Pharm graduate who also builds W
 
 ## What's on the page
 - About, hospital training and skills
-- Projects (Jarvis AI assistant, WordPress sites, design and video work)
+- Projects (Jarvis AI assistant, Unfiltered career community, WordPress sites, design and video work)
 - **Edits** — 8 short video edits (5 vertical reels + 3 landscape cuts) that autoplay when scrolled into view
 - Contact details
 
