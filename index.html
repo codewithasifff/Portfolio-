@@ -335,24 +335,23 @@ footer{background:#171512;color:#bbb}
 @media(prefers-reduced-motion:reduce){.hero .photo{animation:none;transform:none}}
 
 
-/* Loose, visibly slack lanyard — not a straight vertical string */
-.hero .photo{transform-origin:50% 0%;isolation:isolate}
-.hero .photo:before{
- content:"";position:absolute;z-index:-1;
- width:clamp(105px,15vw,150px);height:clamp(330px,44vh,440px);
- left:50%;bottom:calc(100% - 7px);
- background-color:transparent;
- background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='440' viewBox='0 0 150 440'%3E%3Cpath d='M75 0 C75 64 20 92 27 157 C33 220 126 246 113 312 C106 355 75 380 75 440' fill='none' stroke='%23171512' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M78 0 C78 64 23 92 30 157 C36 220 129 246 116 312 C109 355 78 380 78 440' fill='none' stroke='%23ffffff' stroke-opacity='.55' stroke-width='.8' stroke-linecap='round'/%3E%3C/svg%3E");
- background-repeat:no-repeat;background-position:center bottom;background-size:100% 100%;
- transform:translateX(-50%);box-shadow:none;
+/* Real slack elastic lanyard: wide hanging loop + live spring deformation */
+.hero .photo{transform-origin:50% 0%;isolation:isolate;overflow:visible}
+.hero .photo:before{content:none!important}
+.hero .lanyard{
+ position:absolute;z-index:-1;pointer-events:none;overflow:visible;
+ width:clamp(150px,19vw,205px);height:clamp(365px,49vh,500px);
+ left:50%;bottom:calc(100% - 8px);transform:translateX(-50%);
 }
+.hero .lanyard .cord{fill:none;stroke:#171512;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.hero .lanyard .shine{fill:none;stroke:#fff;stroke-opacity:.68;stroke-width:1;stroke-linecap:round}
 .hero .photo:after{
  top:-8px;left:50%;width:15px;height:15px;
  border:2px solid var(--ink);background:var(--yellow);
  box-shadow:0 2px 2px rgba(0,0,0,.15);
 }
 @media(max-width:760px){
- .hero .photo:before{width:112px;height:clamp(300px,40vh,380px)}
+ .hero .lanyard{width:145px;height:clamp(330px,43vh,410px)}
 }
 
 </style>
@@ -738,34 +737,53 @@ document.querySelectorAll('header[id],section[id]').forEach(s=>io.observe(s));
  }
 })();
 
-/* Elastic lanyard swing: scroll energy makes the hanging portrait sway */
+/* Elastic lanyard: a genuinely loose loop that stretches, recoils and sways with scroll */
 (function(){
  const card=document.querySelector('.hero .photo');
  if(!card)return;
- const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- if(reduce)return;
- let lastY=window.scrollY,velocity=0,angle=0,angularVelocity=0,raf=0;
- let lastTime=performance.now();
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const svgNS='http://www.w3.org/2000/svg';
+ const svg=document.createElementNS(svgNS,'svg');
+ svg.setAttribute('class','lanyard');svg.setAttribute('viewBox','0 0 200 500');svg.setAttribute('aria-hidden','true');
+ const cord=document.createElementNS(svgNS,'path');cord.setAttribute('class','cord');
+ const shine=document.createElementNS(svgNS,'path');shine.setAttribute('class','shine');
+ svg.append(cord,shine);card.insertBefore(svg,card.firstChild);
+ let lastY=scrollY,scrollImpulse=0,angle=0,angularVelocity=0,stretch=0,stretchVelocity=0,raf=0,lastTime=performance.now();
+ function draw(){
+  const sway=Math.max(-1,Math.min(1,angle/22));
+  const pull=Math.max(0,Math.min(1,stretch));
+  const side=58+sway*26+pull*19;
+  const drop=48+pull*35;
+  const d='M100 0 C100 52 '+(100-side)+' 73 '+(100-side)+' 132 C'+(100-side-8)+' '+(190+drop*.18)+' '+(100+side+14)+' '+(224+drop*.42)+' '+(100+side)+' '+(300+drop*.58)+' C'+(100+side-4)+' '+(368+drop*.62)+' 100 '+(390+drop)+' 100 '+(500+pull*22);
+  cord.setAttribute('d',d);
+  shine.setAttribute('d',d.replace('M100 0','M103 0').replace(' 100 '+(500+pull*22),' 103 '+(500+pull*22)));
+ }
+ draw();
  function onScroll(){
-  const y=window.scrollY,delta=y-lastY;lastY=y;
-  velocity=Math.max(-32,Math.min(32,delta));
-  if(!raf)raf=requestAnimationFrame(tick);
+  const y=scrollY,delta=y-lastY;lastY=y;
+  scrollImpulse=Math.max(-34,Math.min(34,delta));
+  if(!raf){lastTime=performance.now();raf=requestAnimationFrame(tick)}
  }
  function tick(now){
-  const dt=Math.min(.04,(now-lastTime)/1000||.016);lastTime=now;
-  const target=Math.max(-17,Math.min(17,-velocity*.48));
-  angularVelocity+=(target-angle)*18*dt;
-  angularVelocity*=Math.pow(.84,dt*60);
-  angle+=angularVelocity*dt*60;
+  const dt=Math.min(.032,(now-lastTime)/1000||.016);lastTime=now;
+  const impulse=scrollImpulse;
+  const targetAngle=Math.max(-22,Math.min(22,-impulse*.72));
+  angularVelocity+=(targetAngle-angle)*17*dt;
+  angularVelocity*=Math.pow(.78,dt*60);angle+=angularVelocity*dt*60;
+  const targetStretch=Math.min(1,Math.abs(impulse)/22);
+  stretchVelocity+=(targetStretch-stretch)*13*dt;
+  stretchVelocity*=Math.pow(.82,dt*60);stretch+=stretchVelocity*dt*60;
   card.style.rotate=angle.toFixed(2)+'deg';
-  velocity*=Math.pow(.78,dt*60);
-  if(Math.abs(angle)>.08||Math.abs(angularVelocity)>.08||Math.abs(velocity)>.08){
+  draw();
+  scrollImpulse*=Math.pow(.78,dt*60);
+  if(Math.abs(angle)>.08||Math.abs(angularVelocity)>.08||Math.abs(stretch)>.008||Math.abs(stretchVelocity)>.008||Math.abs(scrollImpulse)>.08){
    raf=requestAnimationFrame(tick);
   }else{
-   angle=0;angularVelocity=0;velocity=0;card.style.rotate='0deg';raf=0;
+   angle=0;angularVelocity=0;stretch=0;stretchVelocity=0;scrollImpulse=0;
+   card.style.rotate='0deg';draw();raf=0;
   }
  }
- addEventListener('scroll',onScroll,{passive:true});
+ if(!reduce)addEventListener('scroll',onScroll,{passive:true});
 })();
 </script>
 </body>
