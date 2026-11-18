@@ -304,13 +304,29 @@ footer{width:91%;margin:0 auto;background:#171512;color:#bbb;padding:20px;text-a
  footer{width:93%}
 }
 
+
+/* Final corrections: bottom navigation + large rectangular portrait */
+nav{position:relative!important;top:auto!important;left:auto!important;transform:none!important;margin:34px auto 38px!important;z-index:5}
+.hero .photo{width:230px!important;max-width:62vw!important;justify-self:center;align-self:center;right:auto!important;bottom:auto!important;transform:rotate(1deg)!important}
+.hero .photo img{display:block;width:100%!important;height:auto!important;aspect-ratio:4/5!important;object-fit:cover!important;object-position:center 18%!important;border:5px solid #fffefa!important;border-radius:0!important;outline:1.5px solid var(--ink)!important;box-shadow:7px 7px 0 var(--ink)!important}
+.hero .photo:before{top:-13px!important;width:17px!important;height:17px!important;border:2px solid var(--ink)!important;background:var(--yellow)!important;border-radius:50%!important;z-index:5}
+@media(max-width:760px){
+ nav{max-width:calc(94% - 8px)!important;flex-wrap:wrap;justify-content:center;white-space:normal;margin:28px auto 32px!important;padding:5px!important}
+ nav a{font-size:9px!important;padding:10px 9px!important}
+ .hero{min-height:0!important;height:auto!important;max-height:none!important;padding:155px 6vw 58px!important;overflow:visible!important}
+ .hero .wrap{display:flex!important;flex-direction:column!important;align-items:center!important;gap:0!important}
+ .hero .wrap>div:first-child{width:100%!important;position:relative!important;z-index:2!important}
+ .hero h1{font-size:clamp(90px,23vw,140px)!important}
+ .hero p.sub{max-width:30ch!important;margin:22px auto 0!important}
+ .hero .note{margin:12px auto 24px!important}
+ .hero .photo{width:min(260px,70vw)!important;max-width:none!important;margin:0 auto 12px!important}
+ .hero .photo img{aspect-ratio:4/5!important}
+ .marq{margin-top:0!important}
+}
+
 </style>
 <script>document.documentElement.classList.add('js')</script></head>
 <body>
-
-<nav aria-label="Main">
- <a href="#top">Home</a><a href="#about">About</a><a href="#work">Case Study</a><a href="#playground">Playground</a><a href="#contact">Contact</a>
-</nav>
 
 <header class="hero" id="top">
  <div class="topbar">
@@ -438,6 +454,10 @@ footer{width:91%;margin:0 auto;background:#171512;color:#bbb;padding:20px;text-a
 </div></section>
 
 <footer>© 2026 Shekh Asif</footer>
+
+<nav aria-label="Main">
+ <a href="#top">Home</a><a href="#about">About</a><a href="#work">Case Study</a><a href="#playground">Playground</a><a href="#contact">Contact</a>
+</nav>
 
 <script>
 const links=[...document.querySelectorAll('nav a')];
