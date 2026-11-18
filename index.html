@@ -296,64 +296,6 @@ footer{background:#171512;color:#bbb}
 }
 
 
-/* Hanging photo ID — spring suspension interaction */
-.hero .photo{
- width:clamp(190px,22vw,250px)!important;
- right:5%!important;bottom:-90px!important;
- transform:rotate(0deg);transform-origin:50% 0%;
- animation:photo-drop 1.65s cubic-bezier(.22,.78,.24,1.18) .18s both;
- will-change:transform;
-}
-.hero .photo:before{
- content:"";position:absolute;z-index:-1;width:2px;
- height:clamp(340px,47vh,510px);left:50%;bottom:calc(100% - 5px);
- background:linear-gradient(to bottom,#171512 0 82%,rgba(23,21,18,.55) 100%);
- transform:translateX(-50%);transform-origin:50% 100%;
- box-shadow:1px 0 rgba(255,255,255,.65);
-}
-.hero .photo:after{
- content:"";position:absolute;top:-8px;left:50%;width:13px;height:13px;
- border-radius:50%;background:var(--yellow);border:2px solid var(--ink);
- transform:translateX(-50%);z-index:2;
-}
-.hero .photo img{
- display:block;width:100%;aspect-ratio:4/5;object-fit:cover;
- border:8px solid #fff;outline:1.5px solid var(--ink);
- box-shadow:8px 9px 0 var(--ink);border-radius:1px;
-}
-@keyframes photo-drop{
- 0%{transform:translateY(-115vh) rotate(-13deg)}
- 58%{transform:translateY(10px) rotate(7deg)}
- 74%{transform:translateY(-5px) rotate(-4deg)}
- 88%{transform:translateY(2px) rotate(2deg)}
- 100%{transform:translateY(0) rotate(0deg)}
-}
-@media(max-width:760px){
- .hero .photo{width:clamp(155px,42vw,190px)!important;right:7%!important;bottom:-82px!important}
- .hero .photo:before{height:clamp(300px,42vh,390px)}
-}
-@media(prefers-reduced-motion:reduce){.hero .photo{animation:none;transform:none}}
-
-
-/* Real slack elastic lanyard: wide hanging loop + live spring deformation */
-.hero .photo{transform-origin:50% 0%;isolation:isolate;overflow:visible}
-.hero .photo:before{content:none!important}
-.hero .lanyard{
- position:absolute;z-index:-1;pointer-events:none;overflow:visible;
- width:clamp(150px,19vw,205px);height:clamp(365px,49vh,500px);
- left:50%;bottom:calc(100% - 8px);transform:translateX(-50%);
-}
-.hero .lanyard .cord{fill:none;stroke:#171512;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
-.hero .lanyard .shine{fill:none;stroke:#fff;stroke-opacity:.68;stroke-width:1;stroke-linecap:round}
-.hero .photo:after{
- top:-8px;left:50%;width:15px;height:15px;
- border:2px solid var(--ink);background:var(--yellow);
- box-shadow:0 2px 2px rgba(0,0,0,.15);
-}
-@media(max-width:760px){
- .hero .lanyard{width:145px;height:clamp(330px,43vh,410px)}
-}
-
 </style>
 <script>document.documentElement.classList.add('js')</script></head>
 <body>
@@ -737,54 +679,7 @@ document.querySelectorAll('header[id],section[id]').forEach(s=>io.observe(s));
  }
 })();
 
-/* Elastic lanyard: a genuinely loose loop that stretches, recoils and sways with scroll */
-(function(){
- const card=document.querySelector('.hero .photo');
- if(!card)return;
- const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
- const svgNS='http://www.w3.org/2000/svg';
- const svg=document.createElementNS(svgNS,'svg');
- svg.setAttribute('class','lanyard');svg.setAttribute('viewBox','0 0 200 500');svg.setAttribute('aria-hidden','true');
- const cord=document.createElementNS(svgNS,'path');cord.setAttribute('class','cord');
- const shine=document.createElementNS(svgNS,'path');shine.setAttribute('class','shine');
- svg.append(cord,shine);card.insertBefore(svg,card.firstChild);
- let lastY=scrollY,scrollImpulse=0,angle=0,angularVelocity=0,stretch=0,stretchVelocity=0,raf=0,lastTime=performance.now();
- function draw(){
-  const sway=Math.max(-1,Math.min(1,angle/22));
-  const pull=Math.max(0,Math.min(1,stretch));
-  const side=58+sway*26+pull*19;
-  const drop=48+pull*35;
-  const d='M100 0 C100 52 '+(100-side)+' 73 '+(100-side)+' 132 C'+(100-side-8)+' '+(190+drop*.18)+' '+(100+side+14)+' '+(224+drop*.42)+' '+(100+side)+' '+(300+drop*.58)+' C'+(100+side-4)+' '+(368+drop*.62)+' 100 '+(390+drop)+' 100 '+(500+pull*22);
-  cord.setAttribute('d',d);
-  shine.setAttribute('d',d.replace('M100 0','M103 0').replace(' 100 '+(500+pull*22),' 103 '+(500+pull*22)));
- }
- draw();
- function onScroll(){
-  const y=scrollY,delta=y-lastY;lastY=y;
-  scrollImpulse=Math.max(-34,Math.min(34,delta));
-  if(!raf){lastTime=performance.now();raf=requestAnimationFrame(tick)}
- }
- function tick(now){
-  const dt=Math.min(.032,(now-lastTime)/1000||.016);lastTime=now;
-  const impulse=scrollImpulse;
-  const targetAngle=Math.max(-22,Math.min(22,-impulse*.72));
-  angularVelocity+=(targetAngle-angle)*17*dt;
-  angularVelocity*=Math.pow(.78,dt*60);angle+=angularVelocity*dt*60;
-  const targetStretch=Math.min(1,Math.abs(impulse)/22);
-  stretchVelocity+=(targetStretch-stretch)*13*dt;
-  stretchVelocity*=Math.pow(.82,dt*60);stretch+=stretchVelocity*dt*60;
-  card.style.rotate=angle.toFixed(2)+'deg';
-  draw();
-  scrollImpulse*=Math.pow(.78,dt*60);
-  if(Math.abs(angle)>.08||Math.abs(angularVelocity)>.08||Math.abs(stretch)>.008||Math.abs(stretchVelocity)>.008||Math.abs(scrollImpulse)>.08){
-   raf=requestAnimationFrame(tick);
-  }else{
-   angle=0;angularVelocity=0;stretch=0;stretchVelocity=0;scrollImpulse=0;
-   card.style.rotate='0deg';draw();raf=0;
-  }
- }
- if(!reduce)addEventListener('scroll',onScroll,{passive:true});
-})();
+
 </script>
 </body>
 </html>
