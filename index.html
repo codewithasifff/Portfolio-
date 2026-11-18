@@ -324,6 +324,17 @@ nav{position:relative!important;top:auto!important;left:auto!important;transform
  .marq{margin-top:0!important}
 }
 
+
+/* Crisp project identity marks */
+.card.project-jarvis,.card.project-unfiltered{padding-top:86px}
+.card .project-logo{position:absolute;right:24px;top:22px;width:66px;height:66px;object-fit:contain;border-radius:50%;background:#fff;box-shadow:0 3px 0 rgba(0,0,0,.18);z-index:2}
+.card.project-jarvis .project-logo{background:#fff}
+.card.project-unfiltered .project-logo{background:#fff}
+@media(max-width:760px){
+ .card.project-jarvis,.card.project-unfiltered{padding-top:82px}
+ .card .project-logo{width:58px;height:58px;right:18px;top:18px}
+}
+
 </style>
 <script>document.documentElement.classList.add('js')</script></head>
 <body>
@@ -366,14 +377,16 @@ nav{position:relative!important;top:auto!important;left:auto!important;transform
 <section class="work" id="work"><div class="wrap">
  <h2>Things<br>I've made</h2>
  <div class="cards">
-  <div class="card">
+  <div class="card project-jarvis">
+   <img class="project-logo" src="assets/jarvis-logo.svg" alt="JARVIS project logo" loading="lazy" decoding="async">
    <h3>JARVIS</h3>
    <p class="hand">Personal AI assistant</p>
    <p>An AI-powered personal assistant project focused on useful workflows, automation and a more capable everyday assistant.</p>
    <a class="project-link" href="https://github.com/codewithasifff/jarvis-personal-assistant" target="_blank" rel="noopener noreferrer">Explore project ↗</a>
    <span class="tag">AI</span><span class="tag">Automation</span><span class="tag">Personal assistant</span>
   </div>
-  <div class="card">
+  <div class="card project-unfiltered">
+   <img class="project-logo" src="assets/unfiltered-logo.svg" alt="Unfiltered project logo" loading="lazy" decoding="async">
    <h3>Unfiltered</h3>
    <p class="hand">The real talk on careers</p>
    <p>A text-first community for honest career conversations — share perspectives, connect with people and take part in respectful discussions. Built with Next.js, TypeScript and Supabase.</p>
