@@ -335,6 +335,23 @@ nav{position:relative!important;top:auto!important;left:auto!important;transform
  .card .project-logo{width:58px;height:58px;right:18px;top:18px}
 }
 
+
+/* Correct the bottom dock: stays on-screen while scrolling; paper fills full viewport width */
+body{background:var(--paper)!important}
+body:before{inset:0!important;background-color:var(--paper)!important;background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 31px,var(--rule) 32px,transparent 33px)!important;border:0!important}
+.hero,.marq,section,footer{width:100%!important;margin-left:0!important;margin-right:0!important;box-sizing:border-box}
+footer{padding-bottom:115px!important}
+nav{position:fixed!important;top:auto!important;bottom:max(14px,env(safe-area-inset-bottom))!important;left:50%!important;right:auto!important;transform:translateX(-50%)!important;margin:0!important;z-index:999!important;max-width:calc(100vw - 24px)!important;width:max-content!important;box-sizing:border-box!important;border-radius:3px!important;background:#fffefa!important;box-shadow:5px 5px 0 var(--ink)!important}
+@media(max-width:760px){
+ .hero,.marq,section,footer{width:100%!important}
+ body:before{inset:0!important}
+ section{padding-left:6vw!important;padding-right:6vw!important}
+ .hero{padding-left:5vw!important;padding-right:5vw!important}
+ nav{bottom:max(12px,env(safe-area-inset-bottom))!important;gap:0!important;padding:4px!important;max-width:calc(100vw - 16px)!important;flex-wrap:nowrap!important;white-space:nowrap!important}
+ nav a{font-size:clamp(7px,2.2vw,9px)!important;letter-spacing:.035em!important;padding:9px clamp(5px,1.8vw,9px)!important}
+ footer{padding-bottom:105px!important}
+}
+
 </style>
 <script>document.documentElement.classList.add('js')</script></head>
 <body>
