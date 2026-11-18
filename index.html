@@ -296,6 +296,21 @@ footer{background:#171512;color:#bbb}
 }
 
 
+
+/* Mobile hero cleanup: no rope/doodle, keep a yellow photo pin and prevent text overlap */
+.doodle{display:none!important}
+.hero .photo{position:relative;right:auto;bottom:auto;z-index:3}
+.hero .photo:before{content:"";position:absolute;z-index:4;top:-13px;left:50%;width:22px;height:22px;transform:translateX(-50%);border:2px solid var(--ink);border-radius:50%;background:var(--yellow);box-shadow:1px 2px 0 var(--ink)}
+@media(max-width:760px){
+ .hero{height:auto;min-height:0;max-height:none;padding:145px 6vw 64px}
+ .hero .wrap{display:flex;flex-direction:column;align-items:center;gap:0}
+ .hero .wrap>div:first-child{width:100%;position:relative;z-index:2}
+ .hero .photo{width:min(220px,62vw);margin:28px auto 0;right:auto;bottom:auto;transform:rotate(2deg)}
+ .hero .photo img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+ .hero p.sub{max-width:30ch;margin:26px auto 0}
+ .hero .note{margin-top:14px}
+}
+
 </style>
 <script>document.documentElement.classList.add('js')</script></head>
 <body>
