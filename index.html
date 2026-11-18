@@ -352,6 +352,21 @@ nav{position:fixed!important;top:auto!important;bottom:max(14px,env(safe-area-in
  footer{padding-bottom:105px!important}
 }
 
+
+/* About section — editorial personal story */
+.about-story{max-width:760px}
+.about .about-kicker{font-family:Inter,Arial,sans-serif;font-size:10px;font-weight:800;letter-spacing:.18em;color:var(--blue);margin:0 0 18px}
+.about-story p{max-width:68ch;margin:0 0 17px;font-size:16px;line-height:1.85}
+.about-story strong{font-weight:800;text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:3px;text-underline-offset:3px}
+.about-story .about-signoff{margin-top:24px;font-weight:600}
+.about-story .about-signoff em{font-family:Caveat,cursive;font-size:25px;color:var(--blue);font-weight:700}
+.about-tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+.about-tags span{display:inline-block;padding:9px 13px;background:var(--paper);border:1px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font-size:11px;font-weight:750;letter-spacing:.04em}
+.about-tags span:nth-child(2){background:var(--yellow)}
+.about-tags span:nth-child(3){background:var(--mint)}
+.about-tags span:nth-child(4){background:#f7b3c9}
+@media(max-width:760px){.about-story p{font-size:15px;line-height:1.8}.about-story .about-signoff em{font-size:23px}.about-tags{gap:8px}}
+
 </style>
 <script>document.documentElement.classList.add('js')</script></head>
 <body>
@@ -379,15 +394,19 @@ nav{position:fixed!important;top:auto!important;bottom:max(14px,env(safe-area-in
 
 <section class="about" id="about"><div class="wrap">
  <h2>About<br>me</h2>
- <div>
-  <p>I'm a Bachelor of Pharmacy graduate with a strong base in pharmacology, human anatomy, physiology and pharmaceutical sciences.</p>
-  <p>I spent 90 days training in two government hospitals in Lucknow, working around prescription reading, medicine dispensing, drug storage and patient records. Outside the pharmacy, I build WordPress websites, design graphics, edit short videos and use AI tools to get work done faster.</p>
-  <p>I like accuracy, I learn quickly, and I work well in a team.</p>
+ <div class="about-story">
+  <p class="about-kicker">TWO WORLDS. ONE CURIOUS MIND.</p>
+  <p>Hey, I'm <strong>Asif</strong> — a pharmacy graduate from Lucknow with a builder's mindset. My journey brings together two worlds I genuinely enjoy: <strong>healthcare and technology</strong>. One taught me precision, responsibility and care; the other gives me a space to experiment, create and turn ideas into useful digital experiences.</p>
+  <p>My pharmacy foundation includes pharmacology, human anatomy, physiology and pharmaceutical sciences. During <strong>90 days of practical training across two government hospitals in Lucknow</strong>, I gained exposure to prescription reading, medicine dispensing under supervision, drug storage, inventory practices and patient records. That experience shaped the way I approach work: be attentive, stay organised and respect the details.</p>
+  <p>Beyond healthcare, I'm a self-driven digital creator. I build websites with WordPress, explore AI-powered tools and workflows, shape user interfaces, create graphics and edit videos. I enjoy the whole process — from a rough idea and a blank screen to something people can actually use.</p>
+  <p>My projects reflect that curiosity: <strong>JARVIS</strong>, a personal AI assistant; <strong>Unfiltered</strong>, a text-first space for honest and respectful career conversations; and <strong>WHOSLAY</strong>, a social voting platform concept. I also keep experimenting with web experiences and visual design through my portfolio work.</p>
+  <p class="about-signoff">I'm curious by nature, detail-oriented by training, and always learning by building. <em>Good ideas deserve to become real things.</em></p>
   <div class="facts">
-   <div><b>2022–26</b>B.Pharm, AKTU</div>
+   <div><b>2022–26</b>B.Pharm · AKTU</div>
    <div><b>90 days</b>Hospital training</div>
-   <div><b>Hindi · English</b>Languages</div>
+   <div><b>Lucknow</b>Uttar Pradesh, India</div>
   </div>
+  <div class="about-tags" aria-label="Areas I work across"><span>Healthcare</span><span>Web &amp; Product</span><span>AI Experiments</span><span>Visual Design</span><span>Video Editing</span></div>
  </div>
 </div></section>
 
